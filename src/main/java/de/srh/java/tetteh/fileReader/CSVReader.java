@@ -1,4 +1,6 @@
-package fileReader;
+package de.srh.java.tetteh.fileReader;
+
+import de.srh.java.tetteh.Locations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +10,22 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvReader {
+public  class CSVReader {
 
+    public static List<Locations> getListLocation() {
+        return listLocation;
+    }
 
-
-        private static final String PATH = "src/main/resources/country-list.csv";
+    private static List<Locations> listLocation;
+        private static  String path = "src/main/resources/country-list.csv";
         private static List<String> capitalCities;
 
         private static List<String> countries;
+
+    public static void setPath(String path) {
+        CSVReader.path = path;
+        System.out.println("Pfard=" +path);
+    }
 
         public static List<String> getCapitalCities() {
             return capitalCities;
@@ -31,7 +41,7 @@ public class CsvReader {
             countries = new ArrayList<>();
 
             try {
-                BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(PATH), StandardCharsets.UTF_8);
+                BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8);
                 String line = bufferedReader.readLine();
                 while (line != null){
                     String[] attributes = line.split(",");
